@@ -1,4 +1,4 @@
-import ItemsHistory from "./displayItemsScreen.js";
+import ItemsHistory from "./itemHistory.js";
 import ItemsScreen from "./itemsScreen.js";
 
 document.addEventListener("DOMContentLoaded", handleDocumentLoad);
@@ -12,5 +12,5 @@ function handleDocumentLoad(event) {
 
   const displayItemsScreen = new ItemsHistory();
   displayItemsScreen.render(container);
-  //   console.log(displayItemsScreen);
+  // console.log(displayItemsScreen);
 }
