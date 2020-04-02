@@ -1,5 +1,6 @@
 // import pubsub from "./pubsub.js";
 import { pubsub } from "./pubsub.js";
+import { showSuccessAction, showAlertAction } from "./actions.js";
 
 export default class ItemsScreen {
   constructor() {
@@ -15,10 +16,21 @@ export default class ItemsScreen {
 
   handleAddItem = event => {
     event.preventDefault();
-    const submitButton = document.querySelector(".addItems-input");
-    const val = submitButton.value;
-    submitButton.value = "";
-    console.log(val);
+    const itemTextInput = document.querySelector(".addItems-input");
+    const val = itemTextInput.value;
+    itemTextInput.value = "";
+    // console.log(val);
+    // show actions based one input value
+    const action = document.querySelector(".addItems-action");
+    if (val === "") {
+      showAlertAction(action, "Please add grocery item");
+      return;
+    } else {
+      showSuccessAction(
+        action,
+        `${val} added to the grocery list successfully`
+      );
+    }
     // debugger;
     // const mediator = new pubsub();
     // mediator.publish("itemAdd", val);

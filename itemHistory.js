@@ -1,5 +1,6 @@
 // import pubsub from "./pubsub.js";
 import { pubsub } from "./pubsub.js";
+import { showSuccessAction, showAlertAction } from "./actions.js";
 
 export default class ItemsHistory {
   constructor() {
@@ -77,17 +78,22 @@ export default class ItemsHistory {
   };
 
   displayItems = list => {
-    const groceryList = document.querySelector(".grocery-list");
-    groceryList.innerHTML = "";
-    console.log(list);
+    const action = document.querySelector(".displayItems-action");
 
-    let df = document.createDocumentFragment();
-    list.forEach(item => {
-      const li = document.createElement("li");
-      li.innerText = item;
-      df.appendChild(li);
-    });
-    groceryList.appendChild(df);
+    // console.log(list);
+    if (list.length === 0) {
+      showAlertAction(action, "No items found. Please add grocery item");
+    } else {
+      const groceryList = document.querySelector(".grocery-list");
+      groceryList.innerHTML = "";
+      let df = document.createDocumentFragment();
+      list.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        df.appendChild(li);
+      });
+      groceryList.appendChild(df);
+    }
   };
 
   handleClearAllItems = event => {
