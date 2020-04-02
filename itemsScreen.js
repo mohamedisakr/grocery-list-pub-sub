@@ -22,6 +22,8 @@ export default class ItemsScreen {
     // debugger;
     // const mediator = new pubsub();
     // mediator.publish("itemAdd", val);
+    // this.itemList.push(val);
+    // localStorage.setItem("groc", JSON.stringify(this.itemList));
     pubsub.publish("itemAdded", val);
     console.log(`Items Screen: Just itemAdd ${val}`);
   };
