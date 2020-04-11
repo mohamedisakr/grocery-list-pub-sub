@@ -1,5 +1,5 @@
 // import pubsub from "./pubsub.js";
-import { pubsub } from "./pubsub.js";
+import pubsub from "./pubsub.js";
 import { showSuccessAction, showAlertAction } from "./actions.js";
 
 export default class ItemsScreen {
@@ -7,14 +7,14 @@ export default class ItemsScreen {
     this.itemList = [];
   }
 
-  render = container => {
+  render = (container) => {
     const template = document.querySelector("#addItemsTemplate");
     const form = template.content.cloneNode(true);
     form.querySelector("button").addEventListener("click", this.handleAddItem);
     container.appendChild(form);
   };
 
-  handleAddItem = event => {
+  handleAddItem = (event) => {
     event.preventDefault();
     const itemTextInput = document.querySelector(".addItems-input");
     const val = itemTextInput.value;

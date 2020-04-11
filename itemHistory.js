@@ -1,5 +1,5 @@
 // import pubsub from "./pubsub.js";
-import { pubsub } from "./pubsub.js";
+import pubsub from "./pubsub.js";
 import { showSuccessAction, showAlertAction } from "./actions.js";
 
 export default class ItemsHistory {
@@ -12,7 +12,7 @@ export default class ItemsHistory {
     // console.log(this.itemList);
   }
 
-  render = container => {
+  render = (container) => {
     // console.log("Transactions Form initailized");
     const template = document.querySelector("#displayItemsTemplate");
     const displayItemsContainer = template.content.cloneNode(true);
@@ -36,7 +36,7 @@ export default class ItemsHistory {
     pubsub.subscribe("itemAdded", this.handleItemAdded);
   };
 
-  handleItemAdded = val => {
+  handleItemAdded = (val) => {
     console.log(`Item History: I hear that ${val} was added`);
     // debugger;
     // add the new item to the list
@@ -55,7 +55,7 @@ export default class ItemsHistory {
     this.displayItems(this.itemList);
   };
 
-  handleItemDeleted = event => {
+  handleItemDeleted = (event) => {
     // get the current (clicked) item
     const currentItem = event.target.closest("li");
 
@@ -64,7 +64,7 @@ export default class ItemsHistory {
 
     // remove the removed element text from the array
     this.itemList = this.itemList.filter(
-      item => item.toLowerCase() !== val.toLowerCase()
+      (item) => item.toLowerCase() !== val.toLowerCase()
     );
 
     // update local storage
@@ -77,7 +77,7 @@ export default class ItemsHistory {
     pubsub.publish("itemDeleted", this.itemList);
   };
 
-  displayItems = list => {
+  displayItems = (list) => {
     const action = document.querySelector(".displayItems-action");
 
     // console.log(list);
@@ -87,7 +87,7 @@ export default class ItemsHistory {
       const groceryList = document.querySelector(".grocery-list");
       groceryList.innerHTML = "";
       let df = document.createDocumentFragment();
-      list.forEach(item => {
+      list.forEach((item) => {
         const li = document.createElement("li");
         li.innerText = item;
         df.appendChild(li);
@@ -96,11 +96,11 @@ export default class ItemsHistory {
     }
   };
 
-  handleClearAllItems = event => {
+  handleClearAllItems = (event) => {
     // clear all list items
     const listItemElements = [...document.querySelectorAll("li")];
     console.log(listItemElements);
-    listItemElements.forEach(item => item.parentElement.removeChild(item));
+    listItemElements.forEach((item) => item.parentElement.removeChild(item));
 
     // clear local storage
     localStorage.removeItem("groc");
